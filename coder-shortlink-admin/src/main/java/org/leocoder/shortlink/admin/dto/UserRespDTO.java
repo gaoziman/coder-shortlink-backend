@@ -2,7 +2,9 @@ package org.leocoder.shortlink.admin.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
+import org.leocoder.shortlink.admin.common.desen.PhoneDesensitizationSerializer;
 
 /**
  * @author : 程序员Leo
@@ -33,6 +35,7 @@ public class UserRespDTO {
     /**
      * 手机号
      */
+    @JsonSerialize(using = PhoneDesensitizationSerializer.class)
     private String phone;
 
     /**
