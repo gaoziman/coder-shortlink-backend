@@ -1,6 +1,8 @@
 package org.leocoder.shortlink.admin.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.leocoder.shortlink.admin.common.convention.result.Result;
+import org.leocoder.shortlink.admin.common.convention.result.Results;
 import org.leocoder.shortlink.admin.dto.UserRespDTO;
 import org.leocoder.shortlink.admin.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +27,7 @@ public class UserController {
      * 根据用户名获取用户信息
      */
     @GetMapping("/api/shortlink/v1/user/{username}")
-    public UserRespDTO getUserByUsername(@PathVariable("username") String username) {
-        return userService.getUserByUsername(username);
+    public Result<UserRespDTO> getUserByUsername(@PathVariable("username") String username) {
+        return Results.success(userService.getUserByUsername(username));
     }
-
 }

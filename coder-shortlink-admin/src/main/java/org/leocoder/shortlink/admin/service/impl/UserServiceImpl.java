@@ -3,11 +3,13 @@ package org.leocoder.shortlink.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.leocoder.shortlink.admin.common.convention.exception.ServiceException;
+import org.leocoder.shortlink.admin.common.enums.UserErrorCodeEnum;
 import org.leocoder.shortlink.admin.dao.domain.UserDO;
 import org.leocoder.shortlink.admin.dao.mapper.UserMapper;
 import org.leocoder.shortlink.admin.dto.UserRespDTO;
 import org.leocoder.shortlink.admin.service.UserService;
-import org.springframework.beans.BeanUtils;
+import org.leocoder.shortlink.admin.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -31,11 +33,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         UserDO userDO = baseMapper.selectOne(wrapper);
 
         if (userDO == null) {
-            return null;
+            throw new ServiceException(UserErrorCodeEnum.USER_NOT_EXIST);
         }
         // 转换信息
-        UserRespDTO result = new UserRespDTO();
-        BeanUtils.copyProperties(userDO, result);
-        return result;
+        return BeanUtil.convert(userDO, UserRespDTO.class);
     }
 }
