@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.leocoder</groupId>
+    <artifactId>coder-shortlink-backend</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>coder-shortlink-admin</module>
+        <module>coder-shortlink-gateway</module>
+        <module>coder-shortlink-project</module>
+    </modules>
+
+    <!-- 项目属性配置：统一管理依赖版本号，便于维护和升级 -->
+    <properties>
+        <!-- Java版本：使用JDK 17，支持最新的语言特性和性能优化 -->
+        <java.version>17</java.version>
+        
+        <!-- Spring Boot版本：企业级应用开发框架，提供自动配置和快速开发能力 -->
+        <spring-boot.version>3.0.7</spring-boot.version>
+        
+        <!-- Spring Cloud版本：微服务架构解决方案，提供服务发现、配置管理、断路器等功能 -->
+        <spring-cloud.version>2022.0.3</spring-cloud.version>
+        
+        <!-- Spring Cloud Alibaba版本：阿里巴巴微服务组件，包含Nacos、Sentinel、Seata等 -->
+        <spring-cloud-alibaba.version>2022.0.0.0-RC2</spring-cloud-alibaba.version>
+        
+        <!-- MyBatis Spring Boot Starter版本：MyBatis与Spring Boot集成 -->
+        <mybatis-spring-boot-starter.version>3.0.2</mybatis-spring-boot-starter.version>
+        
+        <!-- ShardingSphere版本：分库分表中间件，支持数据分片、读写分离、分布式事务 -->
+        <shardingsphere.version>5.3.2</shardingsphere.version>
+        
+        <!-- JWT版本：JSON Web Token实现，用于无状态身份认证 -->
+        <jjwt.version>0.9.1</jjwt.version>
+        
+        <!-- FastJSON2版本：阿里巴巴高性能JSON处理库 -->
+        <fastjson2.version>2.0.36</fastjson2.version>
+        
+        <!-- MyBatis Plus版本：MyBatis增强工具，提供CRUD操作、分页、代码生成等功能 -->
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        
+        <!-- Dozer版本：Java Bean映射框架，用于对象转换 -->
+        <dozer-core.version>6.5.2</dozer-core.version>
+        
+        <!-- Hutool版本：Java工具类库，提供丰富的工具方法 -->
+        <hutool-all.version>5.8.20</hutool-all.version>
+        
+        <!-- Redisson版本：Redis Java客户端，支持分布式锁、分布式集合等高级功能 -->
+        <redisson.version>3.21.3</redisson.version>
+        
+        <!-- Guava版本：Google核心Java库，提供集合、缓存、并发等工具 -->
+        <guava.version>30.0-jre</guava.version>
+        
+        <!-- Dozer Mapper版本：对象映射工具 -->
+        <dezermapper.version>6.5.0</dezermapper.version>
+        
+        <!-- JAXB API版本：Java9+环境下XML绑定支持 -->
+        <javax.xml.version>2.3.1</javax.xml.version>
+        
+        <!-- Java Activation版本：Java9+环境下激活框架支持 -->
+        <javax.version>1.1.1</javax.version>
+    </properties>
+
+
+    <!-- 项目直接依赖：这些依赖会被直接引入到项目中 -->
+    <dependencies>
+        <!-- Lombok：Java注解处理器，自动生成getter/setter/toString等方法，减少样板代码 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        
+        <!-- ========== Java9+环境支持依赖 ========== -->
+        <!-- 在Java9+环境中，JAXB被移除出JDK，需要手动添加以下依赖来支持XML绑定功能 -->
+        
+        <!-- JAXB API：Java Architecture for XML Binding API，提供XML与Java对象绑定的接口 -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${javax.xml.version}</version>
+        </dependency>
+        
+        <!-- JAXB Runtime：JAXB的运行时实现，提供XML绑定的具体功能 -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${javax.xml.version}</version>
+        </dependency>
+        
+        <!-- Java Activation Framework：提供MIME类型处理和数据源抽象 -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${javax.version}</version>
+        </dependency>
+        <!-- ========== Java9+环境支持依赖结束 ========== -->
+    </dependencies>
+
+    <!-- 依赖管理：统一管理项目中所有依赖的版本，子模块可以继承这些版本定义 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- ========== 核心框架依赖管理 ========== -->
+            
+            <!-- Spring Boot依赖管理：导入Spring Boot的所有依赖版本定义 -->
+            <!-- 包含Spring Framework、Spring MVC、Spring Data、日志框架等核心组件 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud依赖管理：导入Spring Cloud微服务组件的版本定义 -->
+            <!-- 包含服务发现、配置中心、网关、熔断器、负载均衡等微服务基础设施 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud Alibaba依赖管理：导入阿里巴巴微服务组件版本定义 -->
+            <!-- 包含Nacos(服务发现/配置中心)、Sentinel(熔断限流)、Seata(分布式事务)等 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- ========== 数据访问层依赖 ========== -->
+            
+            <!-- MyBatis Plus：MyBatis增强工具，提供单表CRUD、分页、代码生成等功能 -->
+            <!-- 简化数据访问层开发，减少SQL编写，提供Lambda查询等高级特性 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- ShardingSphere JDBC：分库分表解决方案 -->
+            <!-- 支持数据分片、读写分离、分布式事务，适用于大数据量场景 -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${shardingsphere.version}</version>
+            </dependency>
+
+            <!-- ========== 安全认证依赖 ========== -->
+            
+            <!-- JJWT：JSON Web Token的Java实现 -->
+            <!-- 用于生成和验证JWT令牌，实现无状态的用户认证和授权 -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- ========== JSON处理依赖 ========== -->
+            
+            <!-- FastJSON2：阿里巴巴高性能JSON处理库 -->
+            <!-- 提供快速的JSON序列化和反序列化，性能优于Jackson和Gson -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+
+            <!-- ========== 对象映射依赖 ========== -->
+            
+            <!-- Dozer：Java Bean映射框架 -->
+            <!-- 用于不同对象之间的属性映射，如DTO与Entity之间的转换 -->
+            <dependency>
+                <groupId>com.github.dozermapper</groupId>
+                <artifactId>dozer-core</artifactId>
+                <version>${dozer-core.version}</version>
+            </dependency>
+
+            <!-- ========== 工具类库依赖 ========== -->
+            
+            <!-- Hutool：Java工具类库 -->
+            <!-- 提供丰富的工具方法，包括字符串、日期、加密、HTTP、文件等操作 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+
+            <!-- Google Guava：Google核心Java库 -->
+            <!-- 提供集合工具、缓存、并发工具、字符串处理等实用功能 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- ========== 缓存和分布式依赖 ========== -->
+            
+            <!-- Redisson：Redis Java客户端 -->
+            <!-- 提供分布式锁、分布式集合、分布式对象等高级Redis功能 -->
+            <!-- 支持集群、哨兵、单机等多种Redis部署模式 -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

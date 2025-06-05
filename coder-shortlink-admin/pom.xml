@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    短链接系统 - 管理后台服务模块
+    功能：用户管理、短链接管理、数据统计、系统配置等后台管理功能
+    技术栈：Spring Boot + MyBatis Plus + MySQL + Redis + ShardingSphere
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <!-- 继承父项目配置，获取统一的依赖版本管理和构建配置 -->
+    <parent>
+        <groupId>org.leocoder</groupId>
+        <artifactId>coder-shortlink-backend</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 管理后台服务模块标识 -->
+    <artifactId>coder-shortlink-admin</artifactId>
+
+    <!-- 项目编译配置：使用JDK 17和UTF-8编码 -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <!-- 管理后台服务依赖配置 -->
+    <dependencies>
+        <!-- ========== Web层依赖 ========== -->
+        
+        <!-- Spring Boot Web Starter：提供基础的Web服务能力 -->
+        <!-- 包含Spring MVC、Tomcat容器、JSON处理等核心组件 -->
+        <!-- 用于构建RESTful API和处理HTTP请求 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ========== 数据访问层依赖 ========== -->
+        
+        <!-- MyBatis Plus Boot Starter：MyBatis增强工具 -->
+        <!-- 提供单表CRUD、分页查询、代码生成、Lambda查询等功能 -->
+        <!-- 简化数据访问层开发，减少SQL编写工作量 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
+        <!-- MySQL数据库驱动：连接MySQL数据库的JDBC驱动 -->
+        <!-- scope=runtime表示仅在运行时需要，编译时不需要 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Spring Boot JDBC Starter：提供数据库连接池和事务管理 -->
+        <!-- 包含HikariCP连接池、Spring JDBC Template等组件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- ShardingSphere JDBC：分库分表中间件 -->
+        <!-- 支持数据分片、读写分离、分布式事务，适用于大数据量场景 -->
+        <!-- 在管理后台中用于处理用户数据和短链接数据的分片存储 -->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core</artifactId>
+        </dependency>
+
+        <!-- ========== 对象映射依赖 ========== -->
+        
+        <!-- Dozer：Java Bean映射框架 -->
+        <!-- 用于不同层次对象之间的属性映射，如DTO与Entity之间的转换 -->
+        <!-- 在管理后台中用于请求参数、响应数据、实体对象之间的转换 -->
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+        </dependency>
+
+        <!-- ========== 工具类库依赖 ========== -->
+        
+        <!-- Hutool：Java工具类库 -->
+        <!-- 提供字符串、日期、加密、HTTP、文件等丰富的工具方法 -->
+        <!-- 在管理后台中用于数据处理、格式转换、加密解密等操作 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <!-- ========== 缓存依赖 ========== -->
+        
+        <!-- Spring Boot Redis Starter：Redis缓存支持 -->
+        <!-- 提供RedisTemplate、StringRedisTemplate等操作工具 -->
+        <!-- 用于缓存热点数据、会话管理、分布式锁等功能 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- Redisson：Redis Java客户端增强版 -->
+        <!-- 提供分布式锁、分布式集合、分布式对象等高级Redis功能 -->
+        <!-- 在管理后台中用于分布式锁、限流、数据同步等场景 -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- ========== JSON依赖 ========== -->
+        
+        <!-- FastJSON2：阿里巴巴高性能JSON处理库 -->
+        <!-- 提供快速的JSON序列化和反序列化，性能优于Jackson -->
+        <!-- 用于API数据交换、缓存数据序列化、日志记录等场景 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

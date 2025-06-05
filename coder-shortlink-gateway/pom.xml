@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    短链接系统 - 网关服务模块
+    功能：统一入口网关，负责请求路由、负载均衡、认证鉴权、限流熔断等
+    技术栈：Spring Boot + Spring Cloud Gateway
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <!-- 继承父项目配置，获取统一的依赖版本管理和构建配置 -->
+    <parent>
+        <groupId>org.leocoder</groupId>
+        <artifactId>coder-shortlink-backend</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 网关服务模块标识 -->
+    <artifactId>coder-shortlink-gateway</artifactId>
+
+    <!-- 项目编译配置：使用JDK 17和UTF-8编码 -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- 网关服务依赖配置 -->
+    <dependencies>
+        <!-- Spring Boot Web Starter：提供基础的Web服务能力 -->
+        <!-- 包含Spring MVC、Tomcat容器、JSON处理等核心组件 -->
+        <!-- 用于构建RESTful API和处理HTTP请求 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <!-- TODO: 后续可添加的网关相关依赖 -->
+        <!-- Spring Cloud Gateway：微服务网关，提供路由、过滤器、负载均衡等功能 -->
+        <!-- Spring Security：安全框架，提供认证和授权功能 -->
+        <!-- Spring Boot Actuator：监控和管理端点 -->
+        <!-- Redis：缓存和限流数据存储 -->
+    </dependencies>
+
+</project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    短链接系统 - 短链接核心服务模块
+    功能：短链接生成、重定向、访问统计、链接管理等核心业务功能
+    技术栈：Spring Boot + MyBatis Plus + MySQL + Redis + 布隆过滤器
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <!-- 继承父项目配置，获取统一的依赖版本管理和构建配置 -->
+    <parent>
+        <groupId>org.leocoder</groupId>
+        <artifactId>coder-shortlink-backend</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 短链接核心服务模块标识 -->
+    <artifactId>coder-shortlink-project</artifactId>
+
+    <!-- 项目编译配置：使用JDK 17和UTF-8编码 -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- 短链接核心服务依赖配置 -->
+    <dependencies>
+        <!-- Spring Boot Web Starter：提供基础的Web服务能力 -->
+        <!-- 包含Spring MVC、Tomcat容器、JSON处理等核心组件 -->
+        <!-- 用于构建RESTful API和处理HTTP请求，特别是短链接重定向请求 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <!-- TODO: 后续可添加的短链接核心服务相关依赖 -->
+        <!-- MyBatis Plus：数据访问层，用于短链接数据的CRUD操作 -->
+        <!-- MySQL Connector：数据库连接驱动 -->
+        <!-- Redis：缓存热点短链接，提高访问性能 -->
+        <!-- Redisson：分布式锁，防止短链接重复生成 -->
+        <!-- Guava：布隆过滤器，快速判断短链接是否存在 -->
+        <!-- ShardingSphere：分库分表，应对海量短链接数据 -->
+        <!-- Hutool：工具类库，用于短链接生成算法 -->
+        <!-- FastJSON2：JSON处理，用于API数据交换 -->
+    </dependencies>
+
+</project>
