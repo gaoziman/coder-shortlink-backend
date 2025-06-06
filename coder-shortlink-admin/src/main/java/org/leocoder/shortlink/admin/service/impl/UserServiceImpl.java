@@ -7,7 +7,7 @@ import org.leocoder.shortlink.admin.common.convention.exception.ServiceException
 import org.leocoder.shortlink.admin.common.enums.UserErrorCodeEnum;
 import org.leocoder.shortlink.admin.dao.domain.UserDO;
 import org.leocoder.shortlink.admin.dao.mapper.UserMapper;
-import org.leocoder.shortlink.admin.dto.UserRespDTO;
+import org.leocoder.shortlink.admin.dto.resp.UserRespDTO;
 import org.leocoder.shortlink.admin.service.UserService;
 import org.leocoder.shortlink.admin.util.BeanUtil;
 import org.springframework.stereotype.Service;

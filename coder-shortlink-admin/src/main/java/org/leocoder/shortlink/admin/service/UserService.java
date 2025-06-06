@@ -2,7 +2,7 @@ package org.leocoder.shortlink.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.leocoder.shortlink.admin.dao.domain.UserDO;
-import org.leocoder.shortlink.admin.dto.UserRespDTO;
+import org.leocoder.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
  * @author : 程序员Leo
